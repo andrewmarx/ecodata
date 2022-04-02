@@ -55,3 +55,38 @@
   data.frame(subdiscipline = st[c(TRUE, FALSE)],
              topic = st[c(FALSE, TRUE)])
 }
+
+#' Get data sets data frame
+#'
+#' Returns the data frame of the data sets.
+#'
+#' @noRd
+.get_data_sets <- function() {
+  ds <- c(
+    'Data set 1', 'Data Set 1 Description',
+    'Data set 2', 'Data Set 2 Description',
+    'Data set 3', 'Data Set 3 Description'
+  )
+
+  data.frame(data_set = ds[c(TRUE, FALSE)],
+             description = ds[c(FALSE, TRUE)])
+}
+
+#' Get topics/data sets pivot data frame
+#'
+#' Returns the data frame of data sets assigned to topics
+#'
+#' @noRd
+.get_td_pivot <- function() {
+  td <- c(
+    'Topic 1', 'Data set 1',
+    'Topic 1', 'Data set 2',
+    'Topic 2', 'Data set 2',
+    'Topic 2', 'Data set 3',
+    'Topic 3', 'Data set 1',
+    'Topic 3', 'Data set 3'
+  )
+
+  data.frame(topic = td[c(TRUE, FALSE)],
+             data_set = td[c(FALSE, TRUE)])
+}

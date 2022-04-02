@@ -82,9 +82,24 @@ setMethod(
             data = "missing",
             path = "missing"),
   function(subdiscipline, topic) {
-    # TODO: list out the data sets for the given subdiscipline and topic
+    capture.output(topics <- ecodata(subdiscipline))
 
-    invisible(NULL)
+    if (!topic %in% topics$topic) stop("Invalid topic Make sure the spelling (including capitalization) matches one of the options from ecodata(subdiscipline)", call. = FALSE)
+
+    cat("A list of topics for ", subdiscipline, " and ", topic, ". Choose one for the third parameter:\n\n", sep = "")
+
+    td_pivot = .get_td_pivot()
+    td_pivot = td_pivot[td_pivot$topic == topic, ]
+
+    ds = .get_data_sets()
+    ds = ds[ds$data_set %in% td_pivot$data_set, ]
+
+    for (i in 1:nrow(ds)) {
+      cat("\"", ds$data_set[i], "\"\n", sep = "")
+      cat("    ", ds$description[i], "\n\n")
+    }
+
+    invisible(ds)
   })
 
 #' @rdname ecodata
