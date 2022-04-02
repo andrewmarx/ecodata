@@ -40,7 +40,7 @@ setMethod(
 
     for (i in 1:nrow(sd)) {
       cat("\"", sd[i, 1], "\"\n", sep = "")
-      cat("    ", sd[i, 2], "\n")
+      cat("    ", sd[i, 2], "\n\n")
     }
 
     invisible(NULL)
@@ -63,14 +63,15 @@ setMethod(
     st_pivot = .get_st_pivot()
     st_pivot = st_pivot[st_pivot$subdiscipline == subdiscipline, ]
 
-    topics = merge(st_pivot, .get_topics())
+    topics = .get_topics()
+    topics = topics[topics$topic %in% st_pivot$topic, ]
 
     for (i in 1:nrow(topics)) {
       cat("\"", topics$topic[i], "\"\n", sep = "")
-      cat("    ", topics$description[i], "\n")
+      cat("    ", topics$description[i], "\n\n")
     }
 
-    invisible(NULL)
+    invisible(topics)
   })
 
 #' @rdname ecodata
