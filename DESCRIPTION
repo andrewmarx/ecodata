@@ -1,0 +1,19 @@
+Package: ecodata
+Type: Package
+Title: Ecological Data
+Version: 0.1.0
+Authors@R: c(
+    person("Andrew", "Marx", , "ajm.rpackages@gmail.com", role = c("aut", "cre", "cph"), 
+      comment = c(ORCID = "0000-0002-7456-1631")
+    )
+    )
+Maintainer: Andrew Marx <ajm.rpackages@gmail.com>
+Description: A collection of ecological datasets intended for educational use
+    across various ecology disciplines and analytical topics. The package is
+    designed to provide static datasets like those seen in typical data
+    packages, but also has functionality for generating datasets dynamically.
+License: GPL (>=3)
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.6.0)
+RoxygenNote: 7.1.1
