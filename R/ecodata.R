@@ -34,7 +34,16 @@ setMethod(
             data = "missing",
             path = "missing"),
   function() {
-    # TODO: list out the subdisciplines
+    cat("A list of subdisciplines. Choose one for the first parameter:\n\n")
+
+    sd = .get_subdisciplines()
+
+    for (i in 1:nrow(sd)) {
+      cat("\"", sd[i, 1], "\"\n", sep = "")
+      cat("    ", sd[i, 2], "\n")
+    }
+
+    invisible(NULL)
   })
 
 #' @rdname ecodata
@@ -46,6 +55,8 @@ setMethod(
             path = "missing"),
   function(subdiscipline) {
     # TODO: list out the topics within the given subdiscipline
+
+    invisible(NULL)
   })
 
 #' @rdname ecodata
@@ -58,6 +69,7 @@ setMethod(
   function(subdiscipline, topic) {
     # TODO: list out the data sets for the given subdiscipline and topic
 
+    invisible(NULL)
   })
 
 #' @rdname ecodata
