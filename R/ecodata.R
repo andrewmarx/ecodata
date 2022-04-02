@@ -54,7 +54,21 @@ setMethod(
             data = "missing",
             path = "missing"),
   function(subdiscipline) {
-    # TODO: list out the topics within the given subdiscipline
+    sd = .get_subdisciplines()
+
+    if (!subdiscipline %in% sd$subdiscipline) stop("Invalid subdiscipline. Make sure the spelling (including capitalization) matches one of the options from ecodata()", call. = FALSE)
+
+    cat("A list of topics for ", subdiscipline, ". Choose one for the second parameter:\n\n", sep = "")
+
+    st_pivot = .get_st_pivot()
+    st_pivot = st_pivot[st_pivot$subdiscipline == subdiscipline, ]
+
+    topics = merge(st_pivot, .get_topics())
+
+    for (i in 1:nrow(topics)) {
+      cat("\"", topics$topic[i], "\"\n", sep = "")
+      cat("    ", topics$description[i], "\n")
+    }
 
     invisible(NULL)
   })
