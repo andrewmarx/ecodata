@@ -49,3 +49,18 @@
 .get_td_pivot <- function() {
   ._td_pivot
 }
+
+#' Get the data set builder
+#'
+#' Returns a list with the info necessary to build a data set
+#'
+#' @noRd
+.get_data_set_builder <- function() {
+  list("Data set 1" = list(
+    desc = "",
+    files = c("file1", "file2"),
+    params = NA,
+    fn = function(f, p) {
+    }
+  ))
+}
