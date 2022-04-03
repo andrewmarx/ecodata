@@ -16,4 +16,6 @@ License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.6.0)
+Imports:
+    methods
 RoxygenNote: 7.1.1
