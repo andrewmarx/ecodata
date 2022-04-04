@@ -36,7 +36,7 @@ setMethod(
   function() {
     cat("A list of subdisciplines. Choose one for the first parameter:\n\n")
 
-    sd = .get_subdisciplines()
+    sd = ecodataextra:::.get_subdisciplines()
 
     for (i in 1:nrow(sd)) {
       cat("\"", sd[i, 1], "\"\n", sep = "")
@@ -54,16 +54,16 @@ setMethod(
             data = "missing",
             path = "missing"),
   function(subdiscipline) {
-    sd = .get_subdisciplines()
+    sd = ecodataextra:::.get_subdisciplines()
 
     if (!subdiscipline %in% sd$subdiscipline) stop("Invalid subdiscipline. Make sure the spelling (including capitalization) matches one of the options from ecodata()", call. = FALSE)
 
     cat("A list of topics for ", subdiscipline, ". Choose one for the second parameter:\n\n", sep = "")
 
-    st_pivot = .get_st_pivot()
+    st_pivot = ecodataextra:::.get_st_pivot()
     st_pivot = st_pivot[st_pivot$subdiscipline == subdiscipline, ]
 
-    topics = .get_topics()
+    topics = ecodataextra:::.get_topics()
     topics = topics[topics$topic %in% st_pivot$topic, ]
 
     for (i in 1:nrow(topics)) {
@@ -88,10 +88,10 @@ setMethod(
 
     cat("A list of topics for ", subdiscipline, " and ", topic, ". Choose one for the third parameter:\n\n", sep = "")
 
-    td_pivot = .get_td_pivot()
+    td_pivot = ecodataextra:::.get_td_pivot()
     td_pivot = td_pivot[td_pivot$topic == topic, ]
 
-    ds = .get_data_sets()
+    ds = ecodataextra:::.get_data_sets()
     ds = ds[ds$data_set %in% td_pivot$data_set, ]
 
     for (i in 1:nrow(ds)) {
