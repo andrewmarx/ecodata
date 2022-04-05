@@ -34,11 +34,16 @@
 
 #' Get data sets data frame
 #'
-#' Returns the data frame of the data sets.
+#' Returns a data frame of the data sets.
 #'
 #' @noRd
 .get_data_sets <- function() {
-  ._data_sets
+  data_set_list <- lapply(seq_along(.pkgenv$data_sets), function(i) {
+    list("data_set" = names(.pkgenv$data_sets)[i],
+         "description" = .pkgenv$data_sets[[i]]$desc)
+  })
+
+  do.call(rbind.data.frame, data_set_list)
 }
 
 #' Get topics/data sets pivot data frame
@@ -48,19 +53,4 @@
 #' @noRd
 .get_td_pivot <- function() {
   ._td_pivot
-}
-
-#' Get the data set builder
-#'
-#' Returns a list with the info necessary to build a data set
-#'
-#' @noRd
-.get_data_set_builder <- function() {
-  list("Data set 1" = list(
-    desc = "",
-    files = c("file1", "file2"),
-    params = NA,
-    fn = function(f, p) {
-    }
-  ))
 }

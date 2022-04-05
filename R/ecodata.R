@@ -124,3 +124,4 @@ setMethod(
     # TODO: same as ecodata(subdiscipline, topic, data), but with file export
     #   and invisible() return
   })
+
