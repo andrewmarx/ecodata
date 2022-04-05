@@ -16,7 +16,7 @@ use_data(._subdisciplines,
 # Data sets
 for (f in list.files("data-raw/data", "^[a-z][a-z0-9_]*[a-z0-9]\\.csv$")) {
   name = sub(pattern = "\\.csv$", "", f)
-  data = read.csv(paste0("data-raw/data/", f), stringsAsFactors = FALSE)
+  data = read.csv(paste0("data-raw/data/", f), skip = 5, stringsAsFactors = FALSE, na.strings = "")
   assign(name, data)
   do.call("use_data", list(as.name(name), overwrite = TRUE))
 }
