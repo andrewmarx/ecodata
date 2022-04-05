@@ -84,7 +84,7 @@ setMethod(
   function(subdiscipline, topic) {
     capture.output(topics <- ecodata(subdiscipline))
 
-    if (!topic %in% topics$topic) stop("Invalid topic Make sure the spelling (including capitalization) matches one of the options from ecodata(subdiscipline)", call. = FALSE)
+    if (!topic %in% topics$topic) stop("Invalid topic. Make sure the spelling (including capitalization) matches one of the options from ecodata(subdiscipline)", call. = FALSE)
 
     cat("A list of topics for ", subdiscipline, " and ", topic, ". Choose one for the third parameter:\n\n", sep = "")
 
@@ -110,7 +110,11 @@ setMethod(
             data = "character",
             path = "missing"),
   function(subdiscipline, topic, data) {
-    # TODO: return the data set for the given parameters
+    capture.output(data_sets <- ecodata(subdiscipline, topic))
+
+    if (!data %in% data_sets$data_set) stop("Invalid data set. Make sure the spelling (including capitalization) matches one of the options from ecodata(subdiscipline, topic)", call. = FALSE)
+
+    .pkgenv$data_sets[[data]]$fn(.pkgenv$data_sets[[data]]$files, .pkgenv$data_sets[[data]]$params)
   })
 
 #' @rdname ecodata
@@ -123,5 +127,6 @@ setMethod(
   function(subdiscipline, topic, data, path) {
     # TODO: same as ecodata(subdiscipline, topic, data), but with file export
     #   and invisible() return
+    print("Not implemented yet")
   })
 
