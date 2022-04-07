@@ -13,7 +13,7 @@ assign("datasets", list(), envir = .pkgenv)
   desc = "A data frame of 3D coordinates along a river. Includes an ID and two variables.",
   files = c("lepanthes_rupestris"),
   fn = function() {
-    lepanthes_rupestris[, c("UID", "x.coord", "y.coord", "z.coord", "Phorophyte", "Total_Moss_area")]
+    ecodata::lepanthes_rupestris[, c("UID", "x.coord", "y.coord", "z.coord", "Phorophyte", "Total_Moss_area")]
   }
 ),
 
