@@ -83,17 +83,34 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>Intro here</em></p>
+<p>This package is designed to provide a variety of ecological datasets for educational purposes. It goes beyond the typical R data package and provides two extra features:</p>
+<ul>
+<li>
+<em>Datasets created dynamically from user-contributed functions.</em> These functions can do things like subset included data files, modify them, combine them, or even create artificial datasets entirely from scratch.</li>
+<li>
+<em>Dataset categorization.</em> Ecology is a broad field with many subdisciplines and types of analyses. A collection of datasets large enough to be broadly useful can be overwhelming to filter through individually, so the package has a system for categorization by <em>subdiscipline</em> and <em>topic</em>, which simplifies the process of exploring the various options.</li>
+</ul>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><em>Install details here</em></p>
+<div id="cran" class="section level4">
+<h4 class="hasAnchor">
+<a href="#cran" class="anchor"></a>CRAN</h4>
+<p>The package has not been submitted to CRAN (Yet!).</p>
+</div>
+<div id="github" class="section level4">
+<h4 class="hasAnchor">
+<a href="#github" class="anchor"></a>GitHub</h4>
+<p>The latest version of the package can be installed directly from GitHub using <code><a href="https://devtools.r-lib.org/reference/remote-reexports.html">devtools::install_github("andrewmarx/ecodata")</a></code>.</p>
+</div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p><em>Usage details here</em></p>
+<p>There are two approaches for accessing data in the package.</p>
+<p>The first approach is to access the raw data like you would in typical data packages. This approach only applies to the original data files that were imported into the package. These can be listed using <code><a href="https://rdrr.io/r/utils/data.html">data(package="ecodata")</a></code>. The documentation for them can be viewed using <code>help()</code>, for example: <code><a href="reference/lepanthes_rupestris.html">help("lepanthes_rupestris")</a></code>. The documentation is also available in the online documentation: <a href="https://andrewmarx.github.io/ecodata/reference/index.html">Reference</a></p>
+<p>The second approach to accessing datasets, including the dynamically generated ones, is via the <code><a href="reference/ecodata.html">ecodata()</a></code> function. It handles the category selection process and runs the contributed functions that dynamically generate datasets. The manual pages for <code><a href="reference/ecodata.html">ecodata()</a></code> explain the usage and have an example of how to use it.</p>
 </div>
 </div>
   </div>

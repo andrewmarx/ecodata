@@ -72,13 +72,13 @@
 
       
 
-      </header><script src="contributing_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><script src="contributing_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Contributing</h1>
                         <h4 class="author">Andrew Marx</h4>
             
-            <h4 class="date">2022-04-06</h4>
+            <h4 class="date">2022-04-07</h4>
       
       
       <div class="hidden name"><code>contributing.Rmd</code></div>
@@ -90,39 +90,57 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
+<p>The package was designed so that users can contribute their own datasets to the package via GitHub. Given that this isn’t designed like a typical data package for R, the process of adding datasets is a little more complicated. This article outlines the requirements and process needed to make contributions that take advantage of the features the package offers to users.</p>
 </div>
 <div id="background" class="section level1">
 <h1 class="hasAnchor">
 <a href="#background" class="anchor"></a>Background</h1>
+<p>This package is a little unusual in that it can create datasets from user-contributed functions. These functions can create datasets based on zero, one, or more data files. Because of this behavior, this page attempts to distinguish a <em>“data file”</em> and a <em>“dataset”</em> as two different things. A <em>data file</em> is, as the name implies, a file containing data. It gets imported into the package and documented like a normal data package. A <em>dataset</em> might contain</p>
 </div>
-<div id="adding-data-files" class="section level1">
+<div id="setup" class="section level1">
 <h1 class="hasAnchor">
-<a href="#adding-data-files" class="anchor"></a>Adding Data Files</h1>
-<div id="file" class="section level2">
-<h2 class="hasAnchor">
-<a href="#file" class="anchor"></a>File</h2>
+<a href="#setup" class="anchor"></a>Setup</h1>
+<p>In order to contribute directly, you will need up-to-date versions of the <code>devtools</code>, <code>usethis</code>, and <code>testthat</code> packages in R.</p>
+<p>Contributions should be submitted by forking the <em>contribute</em> branch of the package on GitHub. Once you’ve implemented and tested your additions, submit a pull request.</p>
+</div>
+<div id="data-files" class="section level1">
+<h1 class="hasAnchor">
+<a href="#data-files" class="anchor"></a>Data Files</h1>
+<p>Any type of ecological data is welcome in the package, whether it’s real world data or artificially generated. Additionally, having multiple sources of data that otherwise serve the same educational purposes is welcome; variety gives educators more choices when it comes to developing educational material. While small/relatively simple data files are welcome, consideration should be given to how the dynamic dataset capabilities of the package can be leveraged. For example, a data file with two columns (let’s say <em>mass</em> and <em>age</em>) might be suitable for something like linear regression, but by adding additional columns (e.g., <em>sex</em>, <em>location</em>, etc), the data file becomes useful for additional things, like GLMs. Likewise, having a large number of rows can be advantageous to the package; data sets can be designed to do things like break a large data file into multiple smaller datasets. So when submitting a real world data file, don’t feel the need to trim it down to fit a singular purpose, and when generating artificial data files, consider if adding additional variables or observations might make them useful in new ways.</p>
+<p>Multiple related data files are also welcome in the package. When adding them, they should just be treated individually as separate data files, but with information in the descriptions explaining the relationships. Then, if desired, dynamic datasets can be created that combine files however it makes sense.</p>
+<div id="adding-files" class="section level3">
+<h3 class="hasAnchor">
+<a href="#adding-files" class="anchor"></a>Adding Files</h3>
 <p>To add a data file, it should be added to the <code>./data-raw/data/</code> folder. Names must start with a lowercase letter (a-z), but otherwise can contain lowercase letters, numbers, and underscores (_).</p>
-<p>Currently, the package is only set up to support the inclusion of csv files. By default, the package does not import “NA” strings in csv files as <code>NA</code>. Therefore, csv files should leave fields blank for <code>NA</code> values. The package also does not import strings as factors. Data sets (next section) can be created from these files, which can make the conversion to factors if necessary.</p>
-<p>Additionally, the package skips the first five lines of csv during import. These lines are assumed to contain information about the data (metadata). At the very least, it should contain a description, info about the source of the data (such as a URL to a data repository), and a license. If relevant, citation information should also be included.</p>
+<p>Currently, the package is only set up to include csv files. By default, the package does not import “NA” strings in csv files as <code>NA</code>. Therefore, csv files should leave fields blank for <code>NA</code> values. The package also does not import strings as factors.</p>
+<p>Additionally, the package skips the first five lines of csv during import. These lines are assumed to contain metadata about the file. At the very least, it should contain a description, info about the source of the data (such as a URL to a data repository), and a license (Preferably CC0). If relevant, citation information should also be included.</p>
 </div>
-<div id="documentation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>All raw files must be documented with Roxygen. This is accomplished by updating the <code>./R/data.R</code> file. Entries in this file should be in alphabetical order by name, and should include a description, the source, and a description of the fields. The `“lepanthes_rupestris”’ entry serves as an example of how to prepare the new entry.</p>
+<div id="documentation-files" class="section level3">
+<h3 class="hasAnchor">
+<a href="#documentation-files" class="anchor"></a>Documentation Files</h3>
+<p>All raw data files must be documented with Roxygen. This is accomplished by updating the <code>./R/data.R</code> file. Entries in this file should be in alphabetical order by name, and should include an overall description of the data, the source, and a description of the individual fields. The <code>"lepanthes_rupestris"</code> entry serves as an example of how to prepare the new entry.</p>
 </div>
 </div>
-<div id="creating-datasets" class="section level1">
+<div id="datasets" class="section level1">
 <h1 class="hasAnchor">
-<a href="#creating-datasets" class="anchor"></a>Creating Datasets</h1>
+<a href="#datasets" class="anchor"></a>Datasets</h1>
+<p>The package automatically generates a base dataset for each data file</p>
+</div>
+<div id="categorization" class="section level1">
+<h1 class="hasAnchor">
+<a href="#categorization" class="anchor"></a>Categorization</h1>
 </div>
 <div id="building" class="section level1">
 <h1 class="hasAnchor">
 <a href="#building" class="anchor"></a>Building</h1>
-<p>Once the files have been prepared, they must be built</p>
+<p>Once all the files have been prepared, they must be “built” to be included into the package. First, the ‘./data-raw/build-data.R’ script should be run in its entirety. This takes all the raw information and builds the <em>.rda</em> files that will be included with the package.</p>
+<p>If the documentation in <code>./R/data.R</code> was updated, then <code><a href="https://devtools.r-lib.org/reference/document.html">devtools::document()</a></code> should be run to rebuild the package documentation. It will produce a warning about the NAMESPACE file that can be ignored.</p>
 </div>
 <div id="validating" class="section level1">
 <h1 class="hasAnchor">
 <a href="#validating" class="anchor"></a>Validating</h1>
+<p>The first step to validate the new additions is to run <code><a href="https://devtools.r-lib.org/reference/test.html">devtools::test()</a></code>. It will warn if there were any spelling inconsistencies or unused values in the categorization tables.</p>
+<p>The next step is to run <code><a href="https://devtools.r-lib.org/reference/check.html">devtools::check()</a></code>, which will check that the changes meet CRAN requirements. There should be no errors, warnings, or notes.</p>
 </div>
   </div>
 
