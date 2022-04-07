@@ -3,7 +3,7 @@ test_that("Testing subdiscipline relationships", {
   sd <- .get_subdisciplines()
   st <- .get_st_pivot()
 
-  expect_setequal(sd$subdiscipline, st$subdiscipline)
+  expect_setequal(st$subdiscipline, sd$subdiscipline)
 })
 
 test_that("Testing topic relationships", {
@@ -15,9 +15,9 @@ test_that("Testing topic relationships", {
   expect_setequal(topics$topic, td$topic)
 })
 
-test_that("Testing data set relationships", {
-  ds <- .get_data_sets()
+test_that("Testing dataset relationships", {
+  ds <- .get_datasets()
   td <- .get_td_pivot()
 
-  expect_setequal(ds$data_set, td$data_set)
+  expect_setequal(ds$dataset, td$dataset)
 })

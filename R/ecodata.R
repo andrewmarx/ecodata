@@ -1,17 +1,17 @@
 # Copyright (c) 2022 Andrew Marx. All rights reserved.
 # Licensed under GPLv3.0. See LICENSE file in the project root for details.
 
-#' Load and/or save a data set
+#' Load and/or save a dataset
 #'
-#' Load a data set directly to an R object, save it as file, or both.
+#' Load a dataset directly to an R object, save it as file, or both.
 #'
-#' This function is used to load one of the static or dynamic data sets provided
+#' This function is used to load one of the static or dynamic datasets provided
 #' by the package. It can be either loaded directly into R as an object, or it
 #' can be saved to a file by specifying the path parameter, or both.
 #'
 #' @param subdiscipline A string containing the name of an ecological discipline
 #' @param topic A string containing the name of an analytical topic
-#' @param data A string containing the name of a data set
+#' @param dataset A string containing the name of a dataset
 #' @param path A string containing the path to save the data file
 #'
 #' @return An R object
@@ -22,7 +22,7 @@
 
 setGeneric(
   "ecodata",
-  function(subdiscipline, topic, data, path) {
+  function(subdiscipline, topic, dataset, path) {
     standardGeneric("ecodata")
   })
 
@@ -31,7 +31,7 @@ setMethod(
   "ecodata",
   signature(subdiscipline = "missing",
             topic = "missing",
-            data = "missing",
+            dataset = "missing",
             path = "missing"),
   function() {
     cat("A list of subdisciplines. Choose one for the first parameter:\n\n")
@@ -51,7 +51,7 @@ setMethod(
   "ecodata",
   signature(subdiscipline = "character",
             topic = "missing",
-            data = "missing",
+            dataset = "missing",
             path = "missing"),
   function(subdiscipline) {
     sd = .get_subdisciplines()
@@ -79,7 +79,7 @@ setMethod(
   "ecodata",
   signature(subdiscipline = "character",
             topic = "character",
-            data = "missing",
+            dataset = "missing",
             path = "missing"),
   function(subdiscipline, topic) {
     capture.output(topics <- ecodata(subdiscipline))
@@ -91,11 +91,11 @@ setMethod(
     td_pivot = .get_td_pivot()
     td_pivot = td_pivot[td_pivot$topic == topic, ]
 
-    ds = .get_data_sets()
-    ds = ds[ds$data_set %in% td_pivot$data_set, ]
+    ds = .get_datasets()
+    ds = ds[ds$dataset %in% td_pivot$dataset, ]
 
     for (i in 1:nrow(ds)) {
-      cat("\"", ds$data_set[i], "\"\n", sep = "")
+      cat("\"", ds$dataset[i], "\"\n", sep = "")
       cat("    ", ds$description[i], "\n\n")
     }
 
@@ -107,14 +107,18 @@ setMethod(
   "ecodata",
   signature(subdiscipline = "character",
             topic = "character",
-            data = "character",
+            dataset = "character",
             path = "missing"),
-  function(subdiscipline, topic, data) {
-    capture.output(data_sets <- ecodata(subdiscipline, topic))
+  function(subdiscipline, topic, dataset) {
+    capture.output(datasets <- ecodata(subdiscipline, topic))
 
-    if (!data %in% data_sets$data_set) stop("Invalid data set. Make sure the spelling (including capitalization) matches one of the options from ecodata(subdiscipline, topic)", call. = FALSE)
+    if (!dataset %in% datasets$dataset) stop("Invalid dataset. Make sure the spelling (including capitalization) matches one of the options from ecodata(subdiscipline, topic)", call. = FALSE)
 
-    .pkgenv$data_sets[[data]]$fn(.pkgenv$data_sets[[data]]$files, .pkgenv$data_sets[[data]]$params)
+    if (dataset %in% .get_datafiles()) {
+      get(dataset)
+    } else {
+      .pkgenv$datasets[[dataset]]$fn()
+    }
   })
 
 #' @rdname ecodata
@@ -122,9 +126,9 @@ setMethod(
   "ecodata",
   signature(subdiscipline = "character",
             topic = "character",
-            data = "character",
+            dataset = "character",
             path = "character"),
-  function(subdiscipline, topic, data, path) {
+  function(subdiscipline, topic, dataset, path) {
     # TODO: same as ecodata(subdiscipline, topic, data), but with file export
     #   and invisible() return
     print("Not implemented yet")

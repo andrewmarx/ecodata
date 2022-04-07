@@ -1,51 +1,31 @@
 .pkgenv <- new.env(parent = emptyenv())
-assign("data_sets", list(), envir = .pkgenv)
+assign("datasets", list(), envir = .pkgenv)
 
-.pkgenv$data_sets <- append(.pkgenv$data_sets, list(
+.pkgenv$datasets <- append(.pkgenv$datasets, list(
 
-#
-# Define data sets alphabetically starting here.
+
+# Define datasets alphabetically starting here.
+# Datasets should be in title case and not use underscores.
 # The name should have no indentation before it.
 # The parameters should have two spaces of indentation before them.
-#
+
+"3D Coords" = list(
+  desc = "A data frame of 3D coordinates along a river. Includes an ID and two variables.",
+  files = c("lepanthes_rupestris"),
+  fn = function() {
+    lepanthes_rupestris[, c("UID", "x.coord", "y.coord", "z.coord", "Phorophyte", "Total_Moss_area")]
+  }
+),
 
 "Normal Random Sets" = list(
   desc = "A data frame containing several sets of normally distributed random numbers",
-  files = NA,
-  params = NA,
-  fn = function(f, p) {
-    data.frame(first = rnorm(500),
-               second = rnorm(500, 1),
-               third = rnorm(500, 1, 2),
-               fourth = rnorm(500, 2, 2))
-  }
-),
-
-"Data set 1" = list(
-  desc = "DS1 description here",
-  files = NA,
-  params = NA,
-  fn = function(f, p) {
-    "DS1 data here"
-  }
-),
-
-"Data set 2" = list(
-  desc = "DS2 description here",
-  files = NA,
-  params = NA,
-  fn = function(f, p) {
-    "DS2 data here"
-  }
-),
-
-"Data set 3" = list(
-  desc = "DS3 description here",
-  files = NA,
-  params = NA,
-  fn = function(f, p) {
-    "DS3 data here"
+  fn = function() {
+    data.frame(m0_sd1 = rnorm(1000),
+               m1_sd1 = rnorm(1000, 1),
+               m1_sd2 = rnorm(1000, 1, 2),
+               m2_sd2 = rnorm(1000, 2, 2))
   }
 )
+
 # Close
 ))

@@ -7,9 +7,9 @@
 \alias{ecodata,character,character,missing,missing-method}
 \alias{ecodata,character,character,character,missing-method}
 \alias{ecodata,character,character,character,character-method}
-\title{Load and/or save a data set}
+\title{Load and/or save a dataset}
 \usage{
-ecodata(subdiscipline, topic, data, path)
+ecodata(subdiscipline, topic, dataset, path)
 
 \S4method{ecodata}{missing,missing,missing,missing}()
 
@@ -17,16 +17,16 @@ ecodata(subdiscipline, topic, data, path)
 
 \S4method{ecodata}{character,character,missing,missing}(subdiscipline, topic)
 
-\S4method{ecodata}{character,character,character,missing}(subdiscipline, topic, data)
+\S4method{ecodata}{character,character,character,missing}(subdiscipline, topic, dataset)
 
-\S4method{ecodata}{character,character,character,character}(subdiscipline, topic, data, path)
+\S4method{ecodata}{character,character,character,character}(subdiscipline, topic, dataset, path)
 }
 \arguments{
 \item{subdiscipline}{A string containing the name of an ecological discipline}
 
 \item{topic}{A string containing the name of an analytical topic}
 
-\item{data}{A string containing the name of a data set}
+\item{dataset}{A string containing the name of a dataset}
 
 \item{path}{A string containing the path to save the data file}
 }
@@ -34,10 +34,10 @@ ecodata(subdiscipline, topic, data, path)
 An R object
 }
 \description{
-Load a data set directly to an R object, save it as file, or both.
+Load a dataset directly to an R object, save it as file, or both.
 }
 \details{
-This function is used to load one of the static or dynamic data sets provided
+This function is used to load one of the static or dynamic datasets provided
 by the package. It can be either loaded directly into R as an object, or it
 can be saved to a file by specifying the path parameter, or both.
 }
@@ -51,12 +51,20 @@ print(data)
 
 # Repeat this process until we get data
 data <- ecodata::ecodata("Quantitative Ecology")
-data <- ecodata::ecodata("Quantitative Ecology", "Normal Distribution")
-data <- ecodata::ecodata("Quantitative Ecology", "Normal Distribution", "Normal Random Sets")
+
+# Instead of NULl this time, we get the information that was printed out. It may
+# or many not be useful to store in a variable for later reference without having
+# to run the function again.
+head(data)
+
+# Repeat this process until we get data
+data <- ecodata::ecodata("Quantitative Ecology", "Distributions")
+head(data)
+data <- ecodata::ecodata("Quantitative Ecology", "Distributions", "Normal Random Sets")
 head(data)
 
 # This particular data set is actually dynamically generated. This means that
 # running it again should produce different results.
-data <- ecodata::ecodata("Quantitative Ecology", "Normal Distribution", "Normal Random Sets")
+data <- ecodata::ecodata("Quantitative Ecology", "Distributions", "Normal Random Sets")
 head(data)
 }

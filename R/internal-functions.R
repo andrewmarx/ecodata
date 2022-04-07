@@ -32,25 +32,39 @@
   ._st_pivot
 }
 
-#' Get data sets data frame
+#' Get datafiles data frame
 #'
-#' Returns a data frame of the data sets.
+#' Returns a data frame of the datafiles
 #'
 #' @noRd
-.get_data_sets <- function() {
-  data_set_list <- lapply(seq_along(.pkgenv$data_sets), function(i) {
-    list("data_set" = names(.pkgenv$data_sets)[i],
-         "description" = .pkgenv$data_sets[[i]]$desc)
-  })
-
-  do.call(rbind.data.frame, data_set_list)
+.get_datafiles <- function() {
+  data.frame("datafile" = ._datafiles,
+             "description" = paste0("Raw data file. See help(\"", ._datafiles, "\") for details."))
 }
 
-#' Get topics/data sets pivot data frame
+#' Get datasets data frame
 #'
-#' Returns the data frame of data sets assigned to topics
+#' Returns a data frame of the datasets.
+#'
+#' @noRd
+.get_datasets <- function() {
+  dataset_list <- lapply(seq_along(.pkgenv$datasets), function(i) {
+    list("dataset" = names(.pkgenv$datasets)[i],
+         "description" = .pkgenv$datasets[[i]]$desc)
+  })
+
+  datasets <- do.call(rbind.data.frame, dataset_list)
+
+  data.frame(Map(c, datasets, .get_datafiles()))
+}
+
+#' Get topics/datasets pivot data frame
+#'
+#' Returns the data frame of datasets assigned to topics
 #'
 #' @noRd
 .get_td_pivot <- function() {
   ._td_pivot
 }
+
+
