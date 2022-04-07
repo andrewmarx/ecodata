@@ -95,7 +95,8 @@
 <div id="background" class="section level1">
 <h1 class="hasAnchor">
 <a href="#background" class="anchor"></a>Background</h1>
-<p>This package is a little unusual in that it can create datasets from user-contributed functions. These functions can create datasets based on zero, one, or more data files. Because of this behavior, this page attempts to distinguish a <em>“data file”</em> and a <em>“dataset”</em> as two different things. A <em>data file</em> is, as the name implies, a file containing data. It gets imported into the package and documented like a normal data package. A <em>dataset</em> might contain</p>
+<p>This package is a little unusual in that it can create datasets from user-contributed functions. These functions can create datasets based on zero, one, or more data files. Because of this behavior, this page treats a <em>“data file”</em> and a <em>“dataset”</em> as two different things. A <em>data file</em> is, as the name implies, a file containing data. It gets imported into the package and documented like a normal data package. A <em>dataset</em> is more flexible, and is defined using a function. This function allows it to dynamically produce results, like subsetting a data file so that it only keeps a small set of variables needed for a particular topic.</p>
+<p>Datasets are created by updating the <code>./R/dataset.R</code> file, and then categorized using the files in the <code>./data-raw/</code> directory that start with an underscore. These files are what make it possilbe to take a single dataset and assign it to various subdisciplines and topics. For those familiar with databases, these files essentially act as a mini-database managing the many-to-many relationships between <em>subdisciplines</em>, <em>topics</em>, and <em>datasets</em>.</p>
 </div>
 <div id="setup" class="section level1">
 <h1 class="hasAnchor">
@@ -106,7 +107,7 @@
 <div id="data-files" class="section level1">
 <h1 class="hasAnchor">
 <a href="#data-files" class="anchor"></a>Data Files</h1>
-<p>Any type of ecological data is welcome in the package, whether it’s real world data or artificially generated. Additionally, having multiple sources of data that otherwise serve the same educational purposes is welcome; variety gives educators more choices when it comes to developing educational material. While small/relatively simple data files are welcome, consideration should be given to how the dynamic dataset capabilities of the package can be leveraged. For example, a data file with two columns (let’s say <em>mass</em> and <em>age</em>) might be suitable for something like linear regression, but by adding additional columns (e.g., <em>sex</em>, <em>location</em>, etc), the data file becomes useful for additional things, like GLMs. Likewise, having a large number of rows can be advantageous to the package; data sets can be designed to do things like break a large data file into multiple smaller datasets. So when submitting a real world data file, don’t feel the need to trim it down to fit a singular purpose, and when generating artificial data files, consider if adding additional variables or observations might make them useful in new ways.</p>
+<p>Any type of ecological data is welcome in the package, whether it’s real-world data or artificially generated. Additionally, having multiple sources of data that otherwise serve the same educational purposes is welcome; variety gives educators more choices when it comes to developing educational material. While small/relatively simple data files are welcome, consideration should be given to how the dynamic dataset capabilities of the package can be leveraged. For example, a data file with two columns (let’s say <em>mass</em> and <em>age</em>) might be suitable for something like linear regression, but by adding additional columns (e.g., <em>sex</em>, <em>location</em>, etc), the data file becomes useful for additional things, like GLMs. Likewise, having a large number of rows can be advantageous to the package; data sets can be designed to do things like break a large data file into multiple smaller datasets. So when submitting a real-world data file, don’t feel the need to trim it down to fit a singular purpose, and when generating artificial data files, consider if adding additional variables or observations might make them useful in new ways.</p>
 <p>Multiple related data files are also welcome in the package. When adding them, they should just be treated individually as separate data files, but with information in the descriptions explaining the relationships. Then, if desired, dynamic datasets can be created that combine files however it makes sense.</p>
 <div id="adding-files" class="section level3">
 <h3 class="hasAnchor">
@@ -114,6 +115,7 @@
 <p>To add a data file, it should be added to the <code>./data-raw/data/</code> folder. Names must start with a lowercase letter (a-z), but otherwise can contain lowercase letters, numbers, and underscores (_).</p>
 <p>Currently, the package is only set up to include csv files. By default, the package does not import “NA” strings in csv files as <code>NA</code>. Therefore, csv files should leave fields blank for <code>NA</code> values. The package also does not import strings as factors.</p>
 <p>Additionally, the package skips the first five lines of csv during import. These lines are assumed to contain metadata about the file. At the very least, it should contain a description, info about the source of the data (such as a URL to a data repository), and a license (Preferably CC0). If relevant, citation information should also be included.</p>
+<p>Finally, to help keep file sizes small, consider rounding when there are many decimal values with a large number of trailing digits. This often occurs when the values are calculated and the entire result is kept regardless of significant digits. And changes from an original source should be noted in the file documentation.</p>
 </div>
 <div id="documentation-files" class="section level3">
 <h3 class="hasAnchor">
@@ -124,11 +126,13 @@
 <div id="datasets" class="section level1">
 <h1 class="hasAnchor">
 <a href="#datasets" class="anchor"></a>Datasets</h1>
-<p>The package automatically generates a base dataset for each data file</p>
+<p>The package automatically generates a base dataset for each data file. This dataset will have the same name as the file.</p>
+<p>If you wish to create additional datasets, they must be defined as an entry in <code>./R/datasets.R</code>. The name must be in title case, and it muse have a description, a function definition, and a list of data file names used (if any).</p>
 </div>
 <div id="categorization" class="section level1">
 <h1 class="hasAnchor">
 <a href="#categorization" class="anchor"></a>Categorization</h1>
+<p>Categorization is handled in by the csv files starting with an underscore in the <code>./data-raw/</code> directory. Every dataset (including the one auto-generated internally for the data file) must be added to one or more topics in the <code>_td_pivot.csv</code> file. If a topic doesn’t exist, it can be added the <code>_topics.csv</code> file, and must have one or more entries added to the <code>_td_pivot.csv</code> and <code>_st_pivot.csv</code> files. If a subdiscipline entry does not exist, it can be added to the <code>_subdisciplines.csv</code> and <code>_st_pivot.csv</code> files.</p>
 </div>
 <div id="building" class="section level1">
 <h1 class="hasAnchor">

@@ -23,7 +23,9 @@ The package was designed so that users can contribute their own datasets to the 
 
 # Background
 
-This package is a little unusual in that it can create datasets from user-contributed functions. These functions can create datasets based on zero, one, or more data files. Because of this behavior, this page attempts to distinguish a *"data file"* and a *"dataset"* as two different things. A *data file* is, as the name implies, a file containing data. It gets imported into the package and documented like a normal data package. A *dataset* might contain
+This package is a little unusual in that it can create datasets from user-contributed functions. These functions can create datasets based on zero, one, or more data files. Because of this behavior, this page treats a *"data file"* and a *"dataset"* as two different things. A *data file* is, as the name implies, a file containing data. It gets imported into the package and documented like a normal data package. A *dataset* is more flexible, and is defined using a function. This function allows it to dynamically produce results, like subsetting a data file so that it only keeps a small set of variables needed for a particular topic.
+
+Datasets are created by updating the `./R/dataset.R` file, and then categorized using the files in the `./data-raw/` directory that start with an underscore. These files are what make it possilbe to take a single dataset and assign it to various subdisciplines and topics. For those familiar with databases, these files essentially act as a mini-database managing the many-to-many relationships between *subdisciplines*, *topics*, and *datasets*. 
 
 
 # Setup
@@ -35,7 +37,7 @@ Contributions should be submitted by forking the *contribute* branch of the pack
 
 # Data Files
 
-Any type of ecological data is welcome in the package, whether it's real world data or artificially generated. Additionally, having multiple sources of data that otherwise serve the same educational purposes is welcome; variety gives educators more choices when it comes to developing educational material. While small/relatively simple data files are welcome, consideration should be given to how the dynamic dataset capabilities of the package can be leveraged. For example, a data file with two columns (let's say *mass* and *age*) might be suitable for something like linear regression, but by adding additional columns (e.g., *sex*, *location*, etc), the data file becomes useful for additional things, like GLMs. Likewise, having a large number of rows can be advantageous to the package; data sets can be designed to do things like break a large data file into multiple smaller datasets. So when submitting a real world data file, don't feel the need to trim it down to fit a singular purpose, and when generating artificial data files, consider if adding additional variables or observations might make them useful in new ways.
+Any type of ecological data is welcome in the package, whether it's real-world data or artificially generated. Additionally, having multiple sources of data that otherwise serve the same educational purposes is welcome; variety gives educators more choices when it comes to developing educational material. While small/relatively simple data files are welcome, consideration should be given to how the dynamic dataset capabilities of the package can be leveraged. For example, a data file with two columns (let's say *mass* and *age*) might be suitable for something like linear regression, but by adding additional columns (e.g., *sex*, *location*, etc), the data file becomes useful for additional things, like GLMs. Likewise, having a large number of rows can be advantageous to the package; data sets can be designed to do things like break a large data file into multiple smaller datasets. So when submitting a real-world data file, don't feel the need to trim it down to fit a singular purpose, and when generating artificial data files, consider if adding additional variables or observations might make them useful in new ways.
 
 Multiple related data files are also welcome in the package. When adding them, they should just be treated individually as separate data files, but with information in the descriptions explaining the relationships. Then, if desired, dynamic datasets can be created that combine files however it makes sense.
 
@@ -48,6 +50,8 @@ Currently, the package is only set up to include csv files. By default, the pack
 
 Additionally, the package skips the first five lines of csv during import. These lines are assumed to contain metadata about the file. At the very least, it should contain a description, info about the source of the data (such as a URL to a data repository), and a license (Preferably CC0). If relevant, citation information should also be included.
 
+Finally, to help keep file sizes small, consider rounding when there are many decimal values with a large number of trailing digits. This often occurs when the values are calculated and the entire result is kept regardless of significant digits. And changes from an original source should be noted in the file documentation.
+
 
 ### Documentation Files
 
@@ -56,10 +60,14 @@ All raw data files must be documented with Roxygen. This is accomplished by upda
 
 # Datasets
 
-The package automatically generates a base dataset for each data file 
+The package automatically generates a base dataset for each data file. This dataset will have the same name as the file.
+
+If you wish to create additional datasets, they must be defined as an entry in `./R/datasets.R`. The name must be in title case, and it muse have a description, a function definition, and a list of data file names used (if any).
 
 
 # Categorization
+
+Categorization is handled in by the csv files starting with an underscore in the `./data-raw/` directory. Every dataset (including the one auto-generated internally for the data file) must be added to one or more topics in the `_td_pivot.csv` file. If a topic doesn't exist, it can be added the `_topics.csv` file, and must have one or more entries added to the `_td_pivot.csv` and `_st_pivot.csv` files. If a subdiscipline entry does not exist, it can be added to the `_subdisciplines.csv` and `_st_pivot.csv` files.
 
 
 # Building
