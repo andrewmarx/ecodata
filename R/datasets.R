@@ -10,7 +10,7 @@ assign("datasets", list(), envir = .pkgenv)
 # The parameters should have two spaces of indentation before them.
 
 "3D Coords" = list(
-  desc = "A data frame of 3D coordinates along a river. Includes an ID and two variables.",
+  desc = "A data frame of 3D coordinates along a river. Includes an ID, a categorical variable, and a continuous variable.",
   files = c("lepanthes_rupestris"),
   fn = function() {
     ecodata::lepanthes_rupestris[, c("UID", "x.coord", "y.coord", "z.coord", "Phorophyte", "Total_Moss_area")]
