@@ -117,6 +117,9 @@ setMethod(
     if (dataset %in% .get_datafiles()) {
       get(dataset)
     } else {
+      files <- .pkgenv$datasets[[dataset]]$files
+      if (!is.null(files)) message(paste0("Dataset uses '", files, "'. See help(\"", files,"\") for details."))
+
       .pkgenv$datasets[[dataset]]$fn()
     }
   })
