@@ -43,18 +43,6 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/contributing.html">Contributing</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="news/index.html">Changelog</a>
 </li>
@@ -111,6 +99,14 @@
 <p>There are two approaches for accessing data in the package.</p>
 <p>The first approach is to access the raw data like you would in typical data packages. This approach only applies to the original data files that were imported into the package. These can be listed using <code><a href="https://rdrr.io/r/utils/data.html">data(package="ecodata")</a></code>. The documentation for them can be viewed using <code>help()</code>, for example: <code><a href="reference/lepanthes_rupestris.html">help("lepanthes_rupestris")</a></code>. The documentation is also available in the online documentation: <a href="https://andrewmarx.github.io/ecodata/reference/index.html">Reference</a></p>
 <p>The second approach to accessing datasets, including the dynamically generated ones, is via the <code><a href="reference/ecodata.html">ecodata()</a></code> function. It handles the category selection process and runs the contributed functions that dynamically generate datasets. The manual pages for <code><a href="reference/ecodata.html">ecodata()</a></code> explain the usage and have an example of how to use it.</p>
+</div>
+<div id="contributing-datasets" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contributing-datasets" class="anchor"></a>Contributing Datasets</h2>
+<p>The GitHub repository has been setup for users to suggest datasets to include in the package here: <a href="https://github.com/andrewmarx/ecodata/discussions/categories/dataset-suggestions">Discussions</a>.</p>
+<p>Any type of ecological data will be considered, but due to CRAN package limits, very large datasets will not be implemented right away. Initially, the priority will be for datasets that can be used for multiple educational topics. Variety is welcome, and having multiple datasets per topic is an eventual goal. Datasets that consist of multiple files (e.g., related tables) are also welcome.</p>
+<p>When suggesting datasets, please include the ecological subdiscipline(s) (e.g., Quant, Spatial, Landscape, Molecular, Disease, Movement, etc) and educational topic(s) within those subdisciplines the data can be used for.</p>
+<p>If a dataset included in the package has additional uses it hasn’t been categorized for, feel free to suggest additional categories.</p>
 </div>
 </div>
   </div>

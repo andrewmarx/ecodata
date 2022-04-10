@@ -27,3 +27,16 @@ There are two approaches for accessing data in the package.
 The first approach is to access the raw data like you would in typical data packages. This approach only applies to the original data files that were imported into the package. These can be listed using `data(package="ecodata")`. The documentation for them can be viewed using `help()`, for example: `help("lepanthes_rupestris")`. The documentation is also available in the online documentation: [Reference](https://andrewmarx.github.io/ecodata/reference/index.html)
 
 The second approach to accessing datasets, including the dynamically generated ones, is via the `ecodata()` function. It handles the category selection process and runs the contributed functions that dynamically generate datasets. The manual pages for `ecodata()` explain the usage and have an example of how to use it.
+
+
+## Contributing Datasets
+
+The GitHub repository has been setup for users to suggest datasets to include in the package here: [Discussions](https://github.com/andrewmarx/ecodata/discussions/categories/dataset-suggestions).
+
+Any type of ecological data will be considered, but due to CRAN package limits, very large datasets will not be implemented right away. Initially, the priority will be for datasets that can be used for multiple educational topics. Variety is welcome, and having multiple datasets per topic is an eventual goal. Datasets that consist of multiple files (e.g., related tables) are also welcome.
+
+When suggesting datasets, please include the ecological subdiscipline(s) (e.g., Quant, Spatial, Landscape, Molecular, Disease, Movement, etc) and educational topic(s) within those subdisciplines the data can be used for.
+
+If a dataset included in the package has additional uses it hasn't been categorized for, feel free to suggest additional categories.
+
+

@@ -81,18 +81,6 @@
         <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/contributing.html">Contributing</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -196,16 +184,20 @@ can be saved to a file by specifying the path parameter, or both.</p>
 #&gt; "Distributions"
 #&gt;      Data for various statistical distributions 
 #&gt; 
+#&gt; "Generalized Linear Models"
+#&gt;       
+#&gt; 
 #&gt; "Occupancy"
-#&gt;      Occupancy description 
+#&gt;       
 #&gt; </div><div class='input'>
 <span class='co'># Instead of NULl this time, we get the information that was printed out. It may</span>
 <span class='co'># or many not be useful to store in a variable for later reference without having</span>
 <span class='co'># to run the function again.</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;           topic                                description
-#&gt; 2 Distributions Data for various statistical distributions
-#&gt; 3     Occupancy                      Occupancy description</div><div class='input'>
+</div><div class='output co'>#&gt;                       topic                                description
+#&gt; 2             Distributions Data for various statistical distributions
+#&gt; 3 Generalized Linear Models                                           
+#&gt; 4                 Occupancy                                           </div><div class='input'>
 <span class='co'># Repeat this process until we get data</span>
 <span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>ecodata</span><span class='fu'>::</span><span class='fu'>ecodata</span><span class='op'>(</span><span class='st'>"Quantitative Ecology"</span>, <span class='st'>"Distributions"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; A list of topics for Quantitative Ecology and Distributions. Choose one for the third parameter:
