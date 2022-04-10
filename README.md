@@ -35,6 +35,8 @@ The GitHub repository has been setup for users to suggest datasets to include in
 
 Any type of ecological data will be considered, but due to CRAN package limits, very large datasets will not be implemented right away. Initially, the priority will be for datasets that can be used for multiple educational topics. Variety is welcome, and having multiple datasets per topic is an eventual goal. Datasets that consist of multiple files (e.g., related tables) are also welcome.
 
+An important consideration for all datasets will be the license they are covered under. Currently, it is preferred that all datasets added to the package currently be publicly available under the [CC0 License](https://creativecommons.org/share-your-work/public-domain/cc0/), but other licenses may be considered
+
 When suggesting datasets, please include the ecological subdiscipline(s) (e.g., Quant, Spatial, Landscape, Molecular, Disease, Movement, etc) and educational topic(s) within those subdisciplines the data can be used for.
 
 If a dataset included in the package has additional uses it hasn't been categorized for, feel free to suggest additional categories.
